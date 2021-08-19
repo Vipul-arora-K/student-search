@@ -61,10 +61,12 @@ def get_particular_student():
     if username:
         print(username)
         c.execute("SELECT * FROM students WHERE username IS ?", (username, ))
-        c.execute("SELECT * FROM students WHERE username LIKE %?%", (usernamefirst+" "+usernamelast, ))
-        c.execute("SELECT * FROM students WHERE username LIKE %?%", (usernamelast+" "+usernamefirst, ))
-        c.execute("SELECT * FROM students WHERE username LIKE %?%", (usernamemid+" "+usernamefirst, ))
-        c.execute("SELECT * FROM students WHERE username LIKE %?%", (usernamelast+" "+usernamemid, ))
+        c.execute("SELECT * FROM students WHERE username LIKE %?%?%", (usernamefirst,usernamelast, ))
+        c.execute("SELECT * FROM students WHERE username LIKE %?%?%", (usernamelast,usernamefirst, ))
+        c.execute("SELECT * FROM students WHERE username LIKE %?%?%", (usernamemid,usernamefirst, ))
+        c.execute("SELECT * FROM students WHERE username LIKE %?%?%", (usernamefirst,usernamemid, ))
+        c.execute("SELECT * FROM students WHERE username LIKE %?%?%", (usernamemid,usernamelast, ))
+        c.execute("SELECT * FROM students WHERE username LIKE %?%?%", (usernamelast,usernamefirst, ))
     else:
         print(roll)
         c.execute("SELECT * FROM students WHERE roll IS ?", (roll, ))
